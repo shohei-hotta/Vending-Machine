@@ -3,7 +3,7 @@ class VendingMachine
   AVAILABLE_MONEY = [10, 50, 100, 500, 1000]
 
   def initialize
-    @amount = [0, 0]
+    @amount = [0]
   end
 
   def insert(money)
@@ -16,11 +16,11 @@ class VendingMachine
   end
 
   def total
-    @total = @amount.inject(0) { |result, n| result + n }
+    @amount[0]
   end
 
   def refund
-    @amount[2] = 0
+    @amount[1] = 0
     @amount.delete_at(0)
   end 
 end

@@ -1,11 +1,22 @@
 class VendingMachine
+  require './drink.rb'
 
   AVAILABLE_MONEY = [10, 50, 100, 500, 1000]
 
   def initialize
     @amount = [0]
-    @stock = { cola: { price: 120, stock: 5 } }
+    @stock = {}
+    self.store(Drink.cola)
     @sale_proceeds = 0
+  end
+
+  #ドリンクの在庫を補充
+  def store(drink)
+    if @stock.has_key?(drink.name)
+      @stock[drink.name][:stock] += 5
+    else
+      @stock[drink.name] = { price: drink.price, stock: 5 }
+    end
   end
 
   #お金を投入
@@ -34,16 +45,30 @@ class VendingMachine
     @stock
   end
 
-  #コーラが買えるか確認する
+  #買えるドリンクのリストを表示
+  def purchasable_drink_names
+    @stock_drink_names = @stock.keys
+    n = 0
+    @stock.values.each do |drink|
+      if @amount[0] < drink[:price] || drink[:stock] == 0
+        @stock_drink_names.delete_at(n)
+      else
+        n += 1
+      end
+    end
+    @stock_drink_names
+  end
+
+  #ドリンクが買えるか確認する
   def purchasable?(drink)
-    if @amount[0] >= @stock[drink][:price]
+    if @amount[0] >= @stock[drink][:price] && @stock[drink][:stock] > 0
       true
     else
       false
     end
   end
 
-  #コーラを買う（※もっと綺麗に書けそう？）
+  #ドリンクを買う
   def purchase(drink)
     if self.purchasable?(drink)
       @amount[0] -= @stock[drink][:price] 

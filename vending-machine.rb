@@ -74,7 +74,7 @@ class VendingMachine
       @amount[0] -= @stock[drink][:price] 
       @stock[drink][:stock] -= 1
       @sale_proceeds += @stock[drink][:price]
-      drink
+      [drink, self.refund]
     else
       false
     end

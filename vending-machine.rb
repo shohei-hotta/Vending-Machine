@@ -47,16 +47,21 @@ class VendingMachine
 
   #買えるドリンクのリストを表示
   def purchasable_drink_names
-    @stock_drink_names = @stock.keys
-    n = 0
-    @stock.values.each do |drink|
-      if @amount[0] < drink[:price] || drink[:stock] == 0
-        @stock_drink_names.delete_at(n)
-      else
-        n += 1
-      end
-    end
-    @stock_drink_names
+    @stock.select do |key, value|
+      @amount[0] >= value[:price] && value[:stock] > 0
+    end.keys
+
+    #初期のコード
+    #@stock_drink_names = @stock.keys
+    #n = 0
+    #@stock.values.each do |drink|
+    #  if @amount[0] < drink[:price] || drink[:stock] == 0
+    #    @stock_drink_names.delete_at(n)
+    #  else
+    #    n += 1
+    #  end
+    #end
+    #@stock_drink_names
   end
 
   #ドリンクが買えるか確認する

@@ -6,12 +6,12 @@ class VendingMachine
   def initialize
     @amount = [0]
     @stock = {}
-    self.store(Drink.cola)
-    @sale_proceeds = 0
+    self.stock(Drink.cola)
+    @proceeds = 0
   end
 
   #ドリンクの在庫を補充
-  def store(drink)
+  def stock(drink)
     if @stock.has_key?(drink.name)
       @stock[drink.name][:stock] += 5
     else
@@ -73,7 +73,7 @@ class VendingMachine
     if self.purchasable?(drink)
       @amount[0] -= @stock[drink][:price] 
       @stock[drink][:stock] -= 1
-      @sale_proceeds += @stock[drink][:price]
+      @proceeds += @stock[drink][:price]
       [drink, self.refund]
     else
       false
@@ -81,7 +81,7 @@ class VendingMachine
   end
 
   #売上金額を表示する
-  def sale_proceeds
-    @sale_proceeds
+  def proceeds
+    @proceeds
   end
 end

@@ -71,9 +71,10 @@ class VendingMachine
   #ドリンクを買う
   def purchase(drink)
     if self.purchasable?(drink)
-      @amount[0] -= @stock[drink][:price] 
+      price = @stock[drink][:price]
+      @amount[0] -= price
       @stock[drink][:stock] -= 1
-      @proceeds += @stock[drink][:price]
+      @proceeds += price
       [drink, self.refund]
     else
       false

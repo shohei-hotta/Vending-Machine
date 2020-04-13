@@ -61,11 +61,7 @@ class VendingMachine
 
   #ドリンクが買えるか確認する
   def purchasable?(drink)
-    if @amount[0] >= @stock[drink][:price] && @stock[drink][:stock] > 0
-      true
-    else
-      false
-    end
+    self.purchasable_drink_names.include?(drink)
   end
 
   #ドリンクを買う

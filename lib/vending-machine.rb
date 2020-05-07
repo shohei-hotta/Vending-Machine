@@ -1,5 +1,5 @@
 class VendingMachine
-  require './drink.rb'
+  require './lib/drink.rb'
 
   AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze
 

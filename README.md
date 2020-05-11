@@ -62,3 +62,9 @@ $ irb
 > machine.stock_info # => {:cola=>{:price=>120, :stock=>5}, :redbull=>{:price=>200, :stock=>4}, :water=>{:price=>100, :stock=>10}}
 > exit
 ```
+
+### How to test
+
+```
+$ bundle exec rspec
+```

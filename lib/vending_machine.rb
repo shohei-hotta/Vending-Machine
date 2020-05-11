@@ -3,6 +3,7 @@ class VendingMachine
 
   AVAILABLE_MONEY = [10, 50, 100, 500, 1000].freeze
 
+  #売上金額を確認
   attr_reader :proceeds
 
   def initialize
@@ -52,7 +53,7 @@ class VendingMachine
     @amount.delete_at(0)
   end
 
-  #自動販売機の在庫を表示する（※商品名と在庫だけ表示するようにしたい。）
+  #自動販売機の在庫を表示する
   def stock_info
     @stock
   end
@@ -62,18 +63,6 @@ class VendingMachine
     @stock.select do |key, value|
       @amount[0] >= value[:price] && value[:stock] > 0
     end.keys
-
-    #初期のコード
-    #@stock_drink_names = @stock.keys
-    #n = 0
-    #@stock.values.each do |drink|
-    #  if @amount[0] < drink[:price] || drink[:stock] == 0
-    #    @stock_drink_names.delete_at(n)
-    #  else
-    #    n += 1
-    #  end
-    #end
-    #@stock_drink_names
   end
 
   #ドリンクが買えるか確認する
@@ -91,9 +80,4 @@ class VendingMachine
       [drink, self.refund]
     end
   end
-
-  #売上金額を表示する
-  #def proceeds
-  #  @proceeds
-  #end
 end

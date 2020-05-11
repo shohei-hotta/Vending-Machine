@@ -26,7 +26,7 @@ class VendingMachine
   def insert(money)
     if AVAILABLE_MONEY.include?(money)
       @amount[0] += money
-      total
+      self.total
     else
       money
     end

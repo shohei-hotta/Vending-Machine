@@ -1,4 +1,4 @@
-require "vending-machine"
+require "vending_machine"
 
 describe "自動販売機" do
   before do

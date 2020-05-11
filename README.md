@@ -4,7 +4,7 @@
 $ irb
 
 # ファイルを読み込み
-> require "./lib/vending-machine.rb"
+> require "./lib/vending_machine.rb"
 
 # 自動販売機の作成
 > machine = VendingMachine.new

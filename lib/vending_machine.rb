@@ -37,20 +37,10 @@ class VendingMachine
     @amount[0]
   end
 
-  #お釣りを出す
+  #お釣りを出す(privateメソッドを呼び出し)
   def refund
     create_amount_box
     reset_amount_box
-  end
-
-  # 説明
-  def create_amount_box
-    @amount[1] = 0
-  end
-
-  # 説明
-  def reset_amount_box
-    @amount.delete_at(0)
   end
 
   #自動販売機の在庫を表示する
@@ -79,5 +69,17 @@ class VendingMachine
       @proceeds += price
       [drink, self.refund]
     end
+  end
+
+  private
+
+  #新しい貯金箱を作る
+  def create_amount_box
+    @amount[1] = 0
+  end
+
+  #古い貯金箱を壊し、中に入っていた金額をお釣りとして返金
+  def reset_amount_box
+    @amount.delete_at(0)
   end
 end
